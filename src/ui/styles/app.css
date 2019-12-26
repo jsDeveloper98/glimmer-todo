@@ -82,7 +82,7 @@ i {
 .todo-title {
   margin-left: 15px;
   word-wrap: break-word;
-  width: 380px;
+  max-width: 380px;
 }
 
 .remove-todo {

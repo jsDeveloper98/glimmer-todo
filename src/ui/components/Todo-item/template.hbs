@@ -1,0 +1,7 @@
+<div class="todo-item">
+  <li class="todo-list">
+    <div class="toggle {{if @todo.done 'toggle-done'}}" onclick={{action todoDone @todo}}></div>
+    <span class="todo-title {{if @todo.done 'done'}}">{{@todo.title}}</span>
+    <span class="remove-todo" onclick={{action @removeTodo @todo}}>✘</span>
+  </li>
+</div>

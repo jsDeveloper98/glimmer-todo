@@ -1,29 +1,14 @@
 <div class="container">
   <div class="form">
     <h1 class="header">todos</h1>
-    <div class="input-div">
-      <p><i class="arrow down" onclick={{action doneAllTodos}}></i></p>
-      <input autofocus='on' value={{inputValue}} onkeyup={{action addTodos}} type="text"
-        placeholder="What needs to be done?" class="todo-input">
-    </div>
+    <Todos-input @addTodos={{action addTodos}} @doneAllTodos={{action doneAllTodos}} />
   </div>
   <div class="todo-list-items">
     {{#each filteredTodos key="@index" as |todo|}}
-    <div class="todo-item">
-      <li class="todo-list">
-        <div class="toggle {{if todo.done 'toggle-done'}}" onclick={{action todoDone todo}}></div>
-        <span class="todo-title {{if todo.done 'done'}}">{{todo.title}}</span>
-        <span class="remove-todo" onclick={{action removeTodo todo}}>✘</span>
-      </li>
-    </div>
+    <Todo-item @removeTodo={{action removeTodo}} @todo={{todo}} />
     {{/each}}
     {{#if todos.length}}
-    <div class="filter-buttons">
-      <div class="filter-btn" onclick={{action setFilter 'all'}}>All</div>
-      <div class="filter-btn" onclick={{action setFilter 'active'}}>Active</div>
-      <div class="filter-btn" onclick={{action setFilter 'completed'}}>Completed</div>
-      <div class="remove-done" onclick={{action removeAllDoneTodos}}>Remove completed</div>
-    </div>
+    <Filter-buttons @setType={{action setType}} @removeAllDoneTodos={{action removeAllDoneTodos}} />
     {{/if}}
   </div>
 </div>

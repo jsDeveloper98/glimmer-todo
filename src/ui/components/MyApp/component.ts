@@ -12,6 +12,10 @@ export default class MyApp extends Component {
   @tracked todos = [];
   @tracked type = "all";
 
+  setType(type) {
+    this.type = type;
+  }
+
   filterFunctions = {
     active: todo => !todo.done,
     completed: todo => todo.done
@@ -24,6 +28,7 @@ export default class MyApp extends Component {
     const filtered = this.filterFunctions[this.type];
     return this.todos.filter(filtered);
   }
+
   addTodos(event) {
     if (event.key === "Enter" && event.target.value !== "") {
       let todo = new Todo({
@@ -34,9 +39,6 @@ export default class MyApp extends Component {
       this.todos.unshift(todo);
       event.target.value = "";
     }
-  }
-  todoDone(todo) {
-    todo.done = !todo.done;
   }
   removeTodo(todo) {
     this.todos.splice(this.todos.indexOf(todo), 1);
@@ -50,8 +52,5 @@ export default class MyApp extends Component {
   removeAllDoneTodos() {
     const doneTodos = this.todos.filter(todo => !todo.done);
     this.todos = doneTodos;
-  }
-  setFilter(type) {
-    this.type = type;
   }
 }
